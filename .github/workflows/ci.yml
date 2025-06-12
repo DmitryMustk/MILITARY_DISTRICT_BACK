@@ -28,16 +28,19 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('military-district-back/**/*.gradle*', 'military-district-back/**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
 
       - name: Grant permission for Gradle wrapper
+        working-directory: military-district-back
         run: chmod +x ./gradlew
 
       - name: Start services with Docker Compose
+        working-directory: military-district-back
         run: docker compose -f docker-compose.dev.yml up -d
 
       - name: Wait for Database
+        working-directory: military-district-back
         run: |
           until docker compose -f docker-compose.dev.yml exec military_district pg_isready -U postgres; do
             echo "Waiting for database..."
@@ -45,13 +48,16 @@ jobs:
           done
 
       - name: Build with Gradle
+        working-directory: military-district-back
         run: ./gradlew bootJar --no-daemon
 
       - name: Run tests
+        working-directory: military-district-back
         run: ./gradlew test --no-daemon
 
       - name: Run coverage tests
         if: github.ref == 'refs/heads/main'
+        working-directory: military-district-back
         run: ./gradlew jacocoTestReport
 
       - name: Upload test coverage report
@@ -59,8 +65,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: ./build/reports/jacoco/test/html
+          path: military-district-back/build/reports/jacoco/test/html
 
       - name: Tear down Docker Compose
         if: always()
+        working-directory: military-district-back
         run: docker compose -f docker-compose.dev.yml down -v
