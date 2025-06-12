@@ -1,10 +1,10 @@
-package com.example.miltary_district_back;
+package com.example.military_district_back;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MiltaryDistrictBackApplicationTests {
+class MilitaryDistrictBackApplicationTests {
 
 	@Test
 	void contextLoads() {
