@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  db:
+  military_district:
     image: postgres:latest
     container_name: military_district
     environment:
