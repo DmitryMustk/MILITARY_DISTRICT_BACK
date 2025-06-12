@@ -37,15 +37,17 @@ jobs:
 
       - name: Start services with Docker Compose
         working-directory: military-district-back
-        run: docker compose -f docker-compose.dev.yml up -d
+        run: |
+          docker compose -f docker-compose.dev.yml up -d
+          docker compose -f docker-compose.dev.yml logs
 
       - name: Wait for Database
         working-directory: military-district-back
         run: |
-          until docker compose -f docker-compose.dev.yml exec military_district pg_isready -U postgres; do
+          timeout 60s bash -c 'until docker compose -f docker-compose.dev.yml exec military_district pg_isready -U postgres; do
             echo "Waiting for database..."
             sleep 5
-          done
+          done' || { echo "Database did not start within 60 seconds"; docker compose -f docker-compose.dev.yml logs; exit 1; }
 
       - name: Build with Gradle
         working-directory: military-district-back
