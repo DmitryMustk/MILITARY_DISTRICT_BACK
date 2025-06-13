@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 010-create-artillery-attributes
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: artillery_attributes
+            columns:
+              - column:
+                  name: armament_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: caliber
+                  type: int
+              - column:
+                  name: range
+                  type: int
+        - addForeignKeyConstraint:
+            baseTableName: artillery_attributes
+            baseColumnNames: armament_id
+            referencedTableName: armaments
+            referencedColumnNames: id
+            constraintName: fk_artillery_armament

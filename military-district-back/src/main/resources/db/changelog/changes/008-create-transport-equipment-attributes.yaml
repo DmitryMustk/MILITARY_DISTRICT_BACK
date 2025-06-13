@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-create-transport-equipment-attributes
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: transport_equipment_attributes
+            columns:
+              - column:
+                  name: equipment_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: load_capacity
+                  type: int
+              - column:
+                  name: fuel_type
+                  type: varchar(50)
+        - addForeignKeyConstraint:
+            baseTableName: transport_equipment_attributes
+            baseColumnNames: equipment_id
+            referencedTableName: equipment
+            referencedColumnNames: id
+            constraintName: fk_transport_equipment

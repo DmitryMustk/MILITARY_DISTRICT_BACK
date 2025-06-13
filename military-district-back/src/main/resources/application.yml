@@ -4,7 +4,7 @@ spring:
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
-#  liquibase:
-#    change-log: classpath:db/changelog/db.changelog-master.yaml
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
 server:
   port: 8080
