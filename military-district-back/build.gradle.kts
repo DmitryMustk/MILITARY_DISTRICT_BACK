@@ -30,7 +30,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.jdbi:jdbi3-sqlobject:3.47.0")
 	implementation("org.jdbi:jdbi3-postgres:3.47.0")
-	// implementation("org.liquibase:liquibase-core")
+	implementation("org.liquibase:liquibase-core")
 	implementation("org.postgresql:postgresql:42.7.4")
 
 	compileOnly("org.projectlombok:lombok:1.18.34")

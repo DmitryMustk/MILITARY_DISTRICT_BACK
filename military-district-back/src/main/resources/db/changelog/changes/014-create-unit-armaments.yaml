@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 014-create-unit-armaments
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: unit_armaments
+            columns:
+              - column:
+                  name: unit_id
+                  type: bigint
+              - column:
+                  name: armament_id
+                  type: bigint
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    checkConstraint: "quantity >= 0"
+        - addPrimaryKey:
+            tableName: unit_armaments
+            columnNames: unit_id, armament_id
+        - addForeignKeyConstraint:
+            baseTableName: unit_armaments
+            baseColumnNames: unit_id
+            referencedTableName: military_units
+            referencedColumnNames: id
+            constraintName: fk_unit_armaments_unit
+        - addForeignKeyConstraint:
+            baseTableName: unit_armaments
+            baseColumnNames: armament_id
+            referencedTableName: armaments
+            referencedColumnNames: id
+            constraintName: fk_unit_armaments_armament

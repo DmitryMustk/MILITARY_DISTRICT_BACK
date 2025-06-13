@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-specialties
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: specialties
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

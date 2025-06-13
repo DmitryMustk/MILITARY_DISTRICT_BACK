@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 011-create-facilities
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: facilities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: unit_id
+                  type: bigint
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_for_dislocation
+                  type: boolean
+                  defaultValue: false
+        - addForeignKeyConstraint:
+            baseTableName: facilities
+            baseColumnNames: unit_id
+            referencedTableName: military_units
+            referencedColumnNames: id
+            constraintName: fk_facility_unit

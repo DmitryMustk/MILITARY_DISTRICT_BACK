@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 012-create-personnel-specialties
+      author: ddmstk
+      changes:
+        - createTable:
+            tableName: personnel_specialties
+            columns:
+              - column:
+                  name: personnel_id
+                  type: bigint
+              - column:
+                  name: specialty_id
+                  type: bigint
+        - addPrimaryKey:
+            tableName: personnel_specialties
+            columnNames: personnel_id, specialty_id
+        - addForeignKeyConstraint:
+            baseTableName: personnel_specialties
+            baseColumnNames: personnel_id
+            referencedTableName: personnel
+            referencedColumnNames: id
+            constraintName: fk_personnel_specialty_personnel
+        - addForeignKeyConstraint:
+            baseTableName: personnel_specialties
+            baseColumnNames: specialty_id
+            referencedTableName: specialties
+            referencedColumnNames: id
+            constraintName: fk_personnel_specialty_specialty
