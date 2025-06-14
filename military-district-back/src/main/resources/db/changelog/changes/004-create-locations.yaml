@@ -18,5 +18,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: address
-                  type: text
+                  name: latitude
+                  type: double precision
+                  constraints:
+                    nullable: true
+              - column:
+                  name: longitude
+                  type: double precision
+                  constraints:
+                    nullable: true
