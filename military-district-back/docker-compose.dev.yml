@@ -1,10 +1,13 @@
 services:
   military_district:
-    image: postgres:latest
-    container_name: military_district
+    image: postgis/postgis:17-3.5
     environment:
+      POSTGRES_DB: military_district
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: military_district
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
