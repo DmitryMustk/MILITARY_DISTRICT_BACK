@@ -1,6 +1,6 @@
 services:
   military_district:
-    image: postgis/postgis:17-3.5
+    image: postgres:17
     environment:
       POSTGRES_DB: military_district
       POSTGRES_USER: postgres

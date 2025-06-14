@@ -1,11 +1,5 @@
 databaseChangeLog:
   - changeSet:
-      id: 004-enable-postgis
-      author: ddmstk
-      changes:
-        - sql:
-            sql: CREATE EXTENSION IF NOT EXISTS postgis;
-  - changeSet:
       id: 004-create-locations
       author: ddmstk
       changes:
@@ -24,7 +18,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: coordinates
-                  type: point
+                  name: latitude
+                  type: double precision
+                  constraints:
+                    nullable: true
+              - column:
+                  name: longitude
+                  type: double precision
                   constraints:
                     nullable: true
