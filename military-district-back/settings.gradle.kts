@@ -1,1 +1,1 @@
-rootProject.name = "miltary-district-back"
+rootProject.name = "military-district-back"

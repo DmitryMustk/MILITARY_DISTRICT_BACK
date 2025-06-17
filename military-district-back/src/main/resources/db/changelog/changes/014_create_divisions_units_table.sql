@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS division_units
+(
+    division_id INTEGER NOT NULL REFERENCES divisions (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    unit_id INTEGER NOT NULL REFERENCES units (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (division_id, unit_id)
+);

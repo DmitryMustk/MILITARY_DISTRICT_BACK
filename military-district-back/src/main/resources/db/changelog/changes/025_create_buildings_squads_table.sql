@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS buildings_squads
+(
+    building_id INTEGER NOT NULL REFERENCES buildings (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    squad_id INTEGER NOT NULL REFERENCES squads (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (building_id, squad_id)
+);
