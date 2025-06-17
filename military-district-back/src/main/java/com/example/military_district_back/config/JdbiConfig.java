@@ -4,6 +4,7 @@ import com.example.military_district_back.mapper.GeneralAttributesMapper;
 import com.example.military_district_back.mapper.LocationMapper;
 import com.example.military_district_back.mapper.MilitaryUnitMapper;
 import com.example.military_district_back.mapper.PersonnelMapper;
+import com.example.military_district_back.repository.LocationRepository;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +30,10 @@ public class JdbiConfig {
     @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean
+    public LocationRepository locationRepository(Jdbi jdbi) {
+        return jdbi.onDemand(LocationRepository.class);
     }
 }
